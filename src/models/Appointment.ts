@@ -34,7 +34,7 @@ class Appointment {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 
   // Não precisa mais de construtor
   // constructor(provider: string, date: Date){} Sem TDO
