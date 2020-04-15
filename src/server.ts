@@ -1,5 +1,8 @@
+import 'reflect-metadata'; // usado pelo typeorm
 import express from 'express';
+
 import routes from './routes';
+import './database';
 
 const app = express();
 
