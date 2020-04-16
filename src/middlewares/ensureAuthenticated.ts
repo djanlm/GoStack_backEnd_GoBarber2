@@ -3,6 +3,7 @@ import { verify } from 'jsonwebtoken';
 
 import authConfig from '../config/auth';
 
+// O payload do token retorna essas 3 variaveis
 interface TokenPayload {
   iat: number;
   exp: number;

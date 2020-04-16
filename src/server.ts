@@ -2,11 +2,16 @@ import 'reflect-metadata'; // usado pelo typeorm
 import express from 'express';
 
 import routes from './routes';
+import uploadConfig from './config/upload';
+
 import './database';
 
 const app = express();
 
 app.use(express.json());
+
+// rota pra visualizar as imagens localhost:3333/files/nomeDaImagem
+app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 
 app.listen(3333, () => {
