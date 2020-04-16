@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
 import authConfig from '../config/auth';
-
+import AppError from '../errors/AppError';
 // O payload do token retorna essas 3 variaveis
 interface TokenPayload {
   iat: number;
@@ -19,7 +19,7 @@ export default function ensureAuthentication(
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new Error('JWT token is missing');
+    throw new AppError('JWT token is missing', 401);
   }
   // Bearer mflkdmgdmfdlmfd
   const [, token] = authHeader.split(' '); // retorna um array com oq estava antes do espaço e oq estava depois do espaço
@@ -36,6 +36,6 @@ export default function ensureAuthentication(
     };
     return next();
   } catch (err) {
-    throw new Error('Invalid JWT token');
+    throw new AppError('Invalid JWT token', 401);
   }
 }

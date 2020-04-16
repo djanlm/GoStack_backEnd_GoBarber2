@@ -1,7 +1,9 @@
 import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
+
 import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import AppError from '../errors/AppError';
 /**
  * Recebimento das informações
  * Tratativa de erros e excessões
@@ -29,7 +31,7 @@ class CreateAppointmentService {
     );
 
     if (findAppointmentInSameDate) {
-      throw Error("There's already an appointment at this time");
+      throw new AppError("There's already an appointment at this time");
     }
 
     const appointment = appointmentsRepository.create({

@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 import uploadConfig from '../config/upload';
+import AppError from '../errors/AppError';
 import User from '../models/User';
 
 interface Request {
@@ -15,7 +16,7 @@ class UpdateUserAvatarService {
     const user = await usersRepository.findOne(user_id); // Só vai ter id se passou pela rota de autenticação
 
     if (!user) {
-      throw new Error('Only authenticated users can change avatar.');
+      throw new AppError('Only authenticated users can change avatar.', 401);
     }
 
     // caso já tenha avatar, irá remove-lo
