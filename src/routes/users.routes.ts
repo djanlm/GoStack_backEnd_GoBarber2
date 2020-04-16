@@ -1,8 +1,12 @@
 import { Router } from 'express';
+import multer from 'multer';
 
+import uploadConfig from '../config/upload';
 import CreateUserService from '../services/CreateUserService';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
+const upload = multer(uploadConfig);
 
 /** Create user */
 usersRouter.post('/', async (request, response) => {
@@ -24,5 +28,15 @@ usersRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message });
   }
 });
+
+// usa patch em vez de put pq atualiza só uma informação da tabela, o avatar
+usersRouter.patch(
+  '/avatar',
+  ensureAuthenticated,
+  upload.single('avatar'),
+  async (request, response) => {
+    return response.json({ ok: true });
+  },
+);
 
 export default usersRouter;
