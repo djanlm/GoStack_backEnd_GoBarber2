@@ -14,7 +14,7 @@ export default class AlterProviderFieldToProviderID1586967251881
       new TableColumn({
         name: 'provider_id',
         type: 'uuid',
-        isNullable: true, // caso o provider delete seu perfil
+        isNullable: true, // caso o provider delete seu perfil, esse campo ficará nulo
       }),
     );
 
@@ -22,9 +22,9 @@ export default class AlterProviderFieldToProviderID1586967251881
       'appointments',
       new TableForeignKey({
         name: 'AppointmentProvider',
-        columnNames: ['provider_id'],
+        columnNames: ['provider_id'], // coluna que vai ser chave estrangeira
         referencedColumnNames: ['id'], // na tabela original, a coluna se chama id
-        referencedTableName: 'users',
+        referencedTableName: 'users', // tabela referenciada
         onDelete: 'SET NULL', // o cascade deletaria todos os appointments com o id desse usuario
         onUpdate: 'CASCADE',
       }),

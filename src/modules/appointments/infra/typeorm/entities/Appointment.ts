@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from './User';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 /**
  * Um para um (OneToOne)
@@ -25,7 +25,7 @@ class Appointment {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'provider_id' }) // qual coluna vai estabelecer essa relação. chave estrangeira
-  provider: User;
+  provider: User; // instância da classe user
 
   @Column('timestamp with time zone')
   date: Date;
