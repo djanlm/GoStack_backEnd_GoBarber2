@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // rota pra visualizar as imagens localhost:3333/files/nomeDaImagem
-app.use('/files', express.static(uploadConfig.directory));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
 // tratativa dos erros
