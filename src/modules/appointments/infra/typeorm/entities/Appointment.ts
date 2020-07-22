@@ -27,6 +27,13 @@ class Appointment {
   @JoinColumn({ name: 'provider_id' }) // qual coluna vai estabelecer essa relação. chave estrangeira
   provider: User; // instância da classe user
 
+  @Column()
+  user_id: string; // vai ser o id do cliente
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' }) // qual coluna vai estabelecer essa relação. chave estrangeira
+  user: User; // instância da classe user
+
   @Column('timestamp with time zone')
   date: Date;
 
