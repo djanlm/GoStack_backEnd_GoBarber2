@@ -11,6 +11,8 @@ import routes from './routes';
 import '@shared/infra/typeorm';
 import '@shared/container';
 
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // Essa linha não é segura e só foi usada pra testar o envio de email, pois estava dando erro sem essa linha. NÃO DEVE SER USADA EM PRODUÇÃO
+
 const app = express();
 
 app.use(cors());
