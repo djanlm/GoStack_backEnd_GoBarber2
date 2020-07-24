@@ -12,6 +12,9 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsReposiroty';
+import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
+
 container.registerSingleton<IAppointmentsRepository>( // registersingleton cria apenas uma instancia da classe, register criaria uma instancia sempre que fosse chamado
   'AppointmentsRepository',
   AppointmentsRepository,
@@ -25,4 +28,9 @@ container.registerSingleton<IUsersRepository>( // registersingleton cria apenas 
 container.registerSingleton<IUserTokensRepository>( // registersingleton cria apenas uma instancia da classe, register criaria uma instancia sempre que fosse chamado
   'UserTokensRepository',
   UserTokensRepository,
+);
+
+container.registerSingleton<INotificationsRepository>( // registersingleton cria apenas uma instancia da classe, register criaria uma instancia sempre que fosse chamado
+  'NotificationsRepository',
+  NotificationsRepository,
 );

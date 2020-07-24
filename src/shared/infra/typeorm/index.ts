@@ -1,3 +1,3 @@
-import { createConnection } from 'typeorm';
+import { createConnections } from 'typeorm';
 
-createConnection(); // ele procura o ormconfig.json
+createConnections(); // ele procura o ormconfig.json
