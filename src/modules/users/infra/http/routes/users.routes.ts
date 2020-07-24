@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 
 import uploadConfig from '@config/upload';
+import { celebrate, Segments, Joi } from 'celebrate'; // serve pra validação
 
 import UsersController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
@@ -14,7 +15,17 @@ const userAvatarController = new UserAvatarController();
 const upload = multer(uploadConfig);
 
 /** Create user */
-usersRouter.post('/', usersController.create);
+usersRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      nome: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  usersController.create,
+);
 
 // usa patch em vez de put pq atualiza só uma informação da tabela, o avatar
 usersRouter.patch(

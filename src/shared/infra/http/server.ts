@@ -1,6 +1,7 @@
 import 'reflect-metadata'; // usado pelo typeorm
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 import 'express-async-errors'; // usado pra tratar erros
 
 import uploadConfig from '@config/upload';
@@ -21,7 +22,7 @@ app.use(express.json());
 // rota pra visualizar as imagens localhost:3333/files/nomeDaImagem
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
-
+app.use(errors());
 // tratativa dos erros
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   // Se o erro foi gerado pela minha aplicação
