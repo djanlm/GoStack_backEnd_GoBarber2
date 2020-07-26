@@ -1,5 +1,5 @@
 import { Router } from 'express';
-// import { celebrate, Segments, Joi } from 'celebrate'; // serve pra validação
+import { celebrate, Segments, Joi } from 'celebrate'; // serve pra validação
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import AppointmentsController from '../controllers/AppointmentsController';
@@ -22,12 +22,12 @@ appointmentsRouter.use(ensureAuthenticated);
 /** Create appointment */
 appointmentsRouter.post(
   '/',
-  /*  celebrate({
-  [Segments.BODY]: {
+  celebrate({
+    [Segments.BODY]: {
       provider_id: Joi.string().uuid().required(),
       date: Joi.date(), // não consegui passar uma data no formato valido pelo insominia
     },
-  }), */
+  }),
 
   appointmentsController.create,
 );
