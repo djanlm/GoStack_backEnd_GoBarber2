@@ -24,6 +24,7 @@ app.use(express.json());
 // rota pra visualizar as imagens localhost:3333/files/nomeDaImagem
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
+
 app.use(errors());
 // tratativa dos erros
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
